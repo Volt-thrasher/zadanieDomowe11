@@ -5,9 +5,9 @@ public class Employee {
     private String lastName;
     private String pesel;
     private String dept;
-    private String salary;
+    private double salary;
 
-    public Employee(String firstName, String lastName, String pesel, String dept, String salary) {
+    public Employee(String firstName, String lastName, String pesel, String dept, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
@@ -47,16 +47,16 @@ public class Employee {
         this.dept = dept;
     }
 
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
-    public double salaryValue() {
-        return Double.parseDouble(salary);
+    public String salaryToString() {
+        return String.valueOf(salary);
     }
 
     @Override

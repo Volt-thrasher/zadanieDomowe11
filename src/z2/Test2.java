@@ -10,34 +10,33 @@ public class Test2 {
         File file1 = new File("results.txt");
         String line;
         try (BufferedReader bfr = new BufferedReader(new FileReader(file))) {
-            try (BufferedWriter bfw = new BufferedWriter(new FileWriter(file1))) {
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(file1));
                 while ((line = bfr.readLine()) != null) {
                     String[] signs = line.split(" ");
                     double result = 0;
+                    String sign = null;
                     switch (signs[1]) {
                         case "+":
                             result = Double.valueOf(signs[0]) + Double.valueOf(signs[2]);
-                            bfw.write(signs[0] + "+" + signs[2] + "=" + result);
-                            bfw.newLine();
+                            sign = "+";
                             break;
                         case "-":
                             result = Double.valueOf(signs[0]) - Double.valueOf(signs[2]);
-                            bfw.write(signs[0] + "-" + signs[2] + "=" + result);
-                            bfw.newLine();
+                            sign = "-";
                             break;
                         case "*":
                             result = Double.valueOf(signs[0]) * Double.valueOf(signs[2]);
-                            bfw.write(signs[0] + "*" + signs[2] + "=" + result);
-                            bfw.newLine();
+                            sign = "*";
                             break;
                         case "/":
                             result = Double.valueOf(signs[0]) / Double.valueOf(signs[2]);
-                            bfw.write(signs[0] + "/" + signs[2] + "=" + result);
-                            bfw.newLine();
+                            sign = "/";
                             break;
                     }
+                    bfw.write(signs[0] + sign + signs[2] + "=" + result);
+                    bfw.newLine();
                 }
-            }
+
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
