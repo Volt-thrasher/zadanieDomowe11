@@ -1,3 +1,5 @@
+package z1;
+
 public class Employee {
     private String firstName;
     private String lastName;
@@ -59,7 +61,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "z1.Employee{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", pesel='" + pesel + '\'' +
