@@ -7,17 +7,20 @@ import java.util.Arrays;
 public class ArrayTest {
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 4, 5, 6};
-        int n = 3;
+        int n = 9;
         int[] newArray = new int[0];
         try {
             newArray = divideArray(array, n);
-        } catch (LimitExceededException e) {
+            System.out.println(Arrays.toString(newArray));
+        } catch (LimitExceededException | ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
         }
-        System.out.println(Arrays.toString(newArray));
     }
 
     private static int[] divideArray(int[] array, int n) throws LimitExceededException {
+        if (n>array.length){
+            throw new  ArrayIndexOutOfBoundsException("Dlugosc tabeli mniejsza od wartosci n.");
+        }
         int[] sums = new int[n];
         int limit = getLimit(array);
         if (n > 1 && n <= limit) {
