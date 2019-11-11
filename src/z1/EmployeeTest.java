@@ -5,7 +5,11 @@ import java.io.*;
 public class EmployeeTest {
     public static void main(String[] args) {
         File file = new File("employee.txt");
-        employeesArray(file);
+        try {
+            employeesArray(file);
+        }catch (NullPointerException e){
+            System.err.println(e.getMessage());
+        }
         createStatistics(file);
     }
 
@@ -97,8 +101,6 @@ public class EmployeeTest {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }catch (NullPointerException e){
             System.out.println(e.getMessage());
         }
         return counter;
