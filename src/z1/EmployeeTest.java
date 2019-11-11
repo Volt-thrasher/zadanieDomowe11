@@ -90,9 +90,10 @@ public class EmployeeTest {
             if (bfr.readLine()==null){
                 throw new  NullPointerException();
             }
-            while (bfr.readLine() != null ){
-                counter++;
+            do {
+               counter++;
             }
+            while (bfr.readLine() != null );
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
