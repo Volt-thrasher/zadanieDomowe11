@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 public class ArrayTest {
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5, 6};
-        int n = 9;
+        int[] array = {1, 2, 3, 4, 5, 6,7,8,9};
+        int n = 4;
         int[] newArray = new int[0];
         try {
             newArray = divideArray(array, n);
