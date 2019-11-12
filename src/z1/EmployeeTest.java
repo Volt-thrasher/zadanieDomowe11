@@ -7,15 +7,18 @@ public class EmployeeTest {
         File file = new File("employee.txt");
         try {
             employeesArray(file);
+            createStatistics(file);
         }catch (NullPointerException e){
             System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        createStatistics(file);
+
     }
 
-    private static void createStatistics(File file) {
+    private static void createStatistics(File file) throws IOException {
         File statFile = new File("statistics.txt");
-        try (BufferedWriter bfw = new BufferedWriter(new FileWriter(statFile))){
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(statFile));
             bfw.write("Srednia wyplata: "+ mediumSalary(employeesArray(file)));
             bfw.newLine();
             bfw.write("Najwieksza wyplata: "+maxSalary(employeesArray(file)));
@@ -25,9 +28,6 @@ public class EmployeeTest {
             bfw.write("Laczna liczba pracownikow: "+employeesArray(file).length);
             bfw.newLine();
             bfw.write(employeesInDept(employeesArray(file)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private static String employeesInDept(Employee[] employees) {
@@ -72,25 +72,20 @@ public class EmployeeTest {
         return maxSalary;
     }
 
-    private static Employee[] employeesArray(File file) {
+    private static Employee[] employeesArray(File file) throws IOException {
         Employee[] employees = new Employee[lineCounter(file)];
-        try(BufferedReader bfr = new BufferedReader(new FileReader(file))) {
+        BufferedReader bfr = new BufferedReader(new FileReader(file));
             String line;
             for (int i = 0; (line = bfr.readLine()) != null; i++){
                 String[] info = line.split(";");
                 employees[i]=new Employee(info[0],info[1],info[2],info[3],Double.parseDouble(info[4]));
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return employees;
     }
 
-    private static int lineCounter(File file) {
+    private static int lineCounter(File file) throws IOException {
         int counter = 0;
-        try (BufferedReader bfr = new BufferedReader(new FileReader(file))) {
+        BufferedReader bfr = new BufferedReader(new FileReader(file));
             if (bfr.readLine()==null){
                 throw new  NullPointerException();
             }
@@ -98,11 +93,6 @@ public class EmployeeTest {
                counter++;
             }
             while (bfr.readLine() != null );
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
         return counter;
     }
 
@@ -113,8 +103,4 @@ public class EmployeeTest {
         }
         return sum/employees.length;
     }
-
-
-
-
 }
